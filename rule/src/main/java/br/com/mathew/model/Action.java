@@ -2,6 +2,8 @@ package br.com.mathew.model;
 
 import java.util.Map;
 
+import static java.util.Objects.requireNonNull;
+
 public class Action {
 
     private final String type;
@@ -16,7 +18,7 @@ public class Action {
     }
 
     public Action(String type, Map<String, Object> params) {
-        this.type = type;
-        this.params = params;
+        this.type = requireNonNull(type, "type não pode ser null");
+        this.params = (params == null) ? Map.of() : Map.copyOf(params);
     }
 }
